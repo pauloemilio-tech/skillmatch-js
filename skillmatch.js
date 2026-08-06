@@ -1,1 +1,15 @@
-console.log("SkillMatch JS iniciado.");
+const candidato = {
+  nome: "Paulo Emilio",
+  areaInteresse: "Desenvolvimento Front-End",
+  habilidades: ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Git"],
+  tempoExperiencia: 2,
+  disponivelParaRemoto: true,
+};
+
+console.log(candidato.nome);
+console.log(candidato.areaInteresse);
+console.log(candidato.tempoExperiencia);
+
+for (let i = 0; i < candidato.habilidades.length; i++) {
+  console.log(candidato.habilidades[i]);
+}
