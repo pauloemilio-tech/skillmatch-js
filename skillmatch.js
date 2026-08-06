@@ -25,3 +25,14 @@ class Vaga {
     return `${this.cargo} na empresa ${this.empresa}`;
   }
 }
+
+class VagaRemota extends Vaga {
+  constructor(empresa, cargo, requisitos, beneficioRemoto) {
+    super(empresa, cargo, requisitos);
+    this.beneficioRemoto = beneficioRemoto;
+  }
+
+  exibirResumo() {
+    return `${super.exibirResumo()} - Vaga remota. Benefício remoto: ${this.beneficioRemoto}`;
+  }
+}
