@@ -36,3 +36,26 @@ class VagaRemota extends Vaga {
     return `${super.exibirResumo()} - Vaga remota. Benefício remoto: ${this.beneficioRemoto}`;
   }
 }
+
+const vagas = [
+  new Vaga(
+    "TechNova",
+    "Desenvolvedor Front-End Júnior",
+    ["HTML", "CSS", "JavaScript", "React", "Git"],
+  ),
+  new VagaRemota(
+    "CodeFlow",
+    "Desenvolvedor React Júnior",
+    ["JavaScript", "React", "TypeScript", "Git", "Jest"],
+    "Auxílio home office",
+  ),
+  new Vaga(
+    "WebStart",
+    "Desenvolvedor Web Júnior",
+    ["HTML", "CSS", "JavaScript", "Vue", "Figma"],
+  ),
+];
+
+for (let i = 0; i < vagas.length; i++) {
+  console.log(vagas[i].exibirResumo());
+}
