@@ -59,3 +59,18 @@ const vagas = [
 for (let i = 0; i < vagas.length; i++) {
   console.log(vagas[i].exibirResumo());
 }
+
+function encontrarHabilidadesCompativeis(candidato, vaga) {
+  return vaga.requisitos.filter((habilidade) =>
+    candidato.habilidades.includes(habilidade),
+  );
+}
+
+function encontrarHabilidadesFaltantes(candidato, vaga) {
+  return vaga.requisitos.filter(
+    (habilidade) => !candidato.habilidades.includes(habilidade),
+  );
+}
+
+console.log(encontrarHabilidadesCompativeis(candidato, vagas[0]));
+console.log(encontrarHabilidadesFaltantes(candidato, vagas[0]));
