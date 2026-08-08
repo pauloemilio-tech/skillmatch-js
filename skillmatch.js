@@ -6,14 +6,6 @@ const candidato = {
   disponivelParaRemoto: true,
 };
 
-console.log(candidato.nome);
-console.log(candidato.areaInteresse);
-console.log(candidato.tempoExperiencia);
-
-for (let i = 0; i < candidato.habilidades.length; i++) {
-  console.log(candidato.habilidades[i]);
-}
-
 class Vaga {
   constructor(empresa, cargo, requisitos) {
     this.empresa = empresa;
@@ -55,10 +47,6 @@ const vagas = [
     ["HTML", "CSS", "JavaScript", "Vue", "Figma"],
   ),
 ];
-
-for (let i = 0; i < vagas.length; i++) {
-  console.log(vagas[i].exibirResumo());
-}
 
 function encontrarHabilidadesCompativeis(candidato, vaga) {
   return vaga.requisitos.filter((habilidade) =>
@@ -225,28 +213,29 @@ async function executarSkillMatch() {
 
   try {
     const vagasCarregadas = await carregarVagas();
+    const analises = analisarVagas(candidato, vagasCarregadas);
+    const melhorVaga = encontrarMelhorVaga(analises);
+    const recomendacao = gerarRecomendacaoDeEstudo(analises);
 
-    console.log(`Vagas carregadas: ${vagasCarregadas.length}`);
+    console.log("=== CANDIDATO ===");
+    console.log(`Nome: ${candidato.nome}`);
+    console.log(`Área de interesse: ${candidato.areaInteresse}`);
+    console.log(`Tempo de experiência: ${candidato.tempoExperiencia}`);
+    console.log(`Habilidades: ${candidato.habilidades.join(", ")}`);
+
+    processarAnalises(analises, exibirAnalise);
+
+    console.log("=== MELHOR OPORTUNIDADE ===");
+    console.log(`Empresa: ${melhorVaga.vaga.empresa}`);
+    console.log(`Cargo: ${melhorVaga.vaga.cargo}`);
+    console.log(`Percentual: ${melhorVaga.percentual}%`);
+    console.log(`Classificação: ${melhorVaga.classificacao}`);
+
+    console.log("=== RECOMENDAÇÃO DE ESTUDO ===");
+    console.log(recomendacao);
   } catch (erro) {
     console.error(`Erro ao carregar vagas: ${erro.message}`);
   }
 }
-
-const analises = analisarVagas(candidato, vagas);
-
-console.log(analises);
-
-processarAnalises(analises, exibirAnalise);
-
-const melhorVaga = encontrarMelhorVaga(analises);
-
-console.log(melhorVaga.vaga.empresa);
-console.log(melhorVaga.vaga.cargo);
-console.log(melhorVaga.percentual);
-console.log(melhorVaga.classificacao);
-
-const recomendacao = gerarRecomendacaoDeEstudo(analises);
-
-console.log(recomendacao);
 
 executarSkillMatch();
