@@ -179,12 +179,24 @@ function processarAnalises(analises, callback) {
   }
 }
 
+function criarContadorDeAnalises() {
+  let quantidade = 0;
+
+  return function () {
+    quantidade++;
+    return quantidade;
+  };
+}
+
+const contarAnalise = criarContadorDeAnalises();
+
 function exibirAnalise(analise) {
   const habilidadesFaltantes =
     analise.habilidadesFaltantes.length > 0
       ? analise.habilidadesFaltantes.join(", ")
       : "Nenhuma";
 
+  console.log(`Análise número: ${contarAnalise()}`);
   console.log(`Empresa: ${analise.vaga.empresa}`);
   console.log(`Cargo: ${analise.vaga.cargo}`);
   console.log(`Requisitos: ${analise.vaga.requisitos.join(", ")}`);
