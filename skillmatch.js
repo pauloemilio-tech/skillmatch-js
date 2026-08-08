@@ -117,6 +117,23 @@ function analisarVagas(candidato, vagas) {
   });
 }
 
+function encontrarMelhorVaga(analises) {
+  return analises.reduce((melhorAnalise, analiseAtual) => {
+    if (analiseAtual.percentual > melhorAnalise.percentual) {
+      return analiseAtual;
+    }
+
+    return melhorAnalise;
+  });
+}
+
 const analises = analisarVagas(candidato, vagas);
 
 console.log(analises);
+
+const melhorVaga = encontrarMelhorVaga(analises);
+
+console.log(melhorVaga.vaga.empresa);
+console.log(melhorVaga.vaga.cargo);
+console.log(melhorVaga.percentual);
+console.log(melhorVaga.classificacao);
