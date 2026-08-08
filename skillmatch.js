@@ -169,6 +169,18 @@ function gerarRecomendacaoDeEstudo(analises) {
   return `Priorize o estudo de ${habilidadePrioritaria}, pois essa habilidade aparece como requisito faltante em ${contagemHabilidades[habilidadePrioritaria]} vaga(s).`;
 }
 
+function carregarVagas() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (vagas.length > 0) {
+        resolve(vagas);
+      } else {
+        reject(new Error("Nenhuma vaga foi encontrada."));
+      }
+    }, 1000);
+  });
+}
+
 const analises = analisarVagas(candidato, vagas);
 
 console.log(analises);
@@ -183,3 +195,11 @@ console.log(melhorVaga.classificacao);
 const recomendacao = gerarRecomendacaoDeEstudo(analises);
 
 console.log(recomendacao);
+
+carregarVagas()
+  .then((vagasCarregadas) => {
+    console.log(vagasCarregadas.length);
+  })
+  .catch((erro) => {
+    console.log(erro.message);
+  });
