@@ -169,6 +169,33 @@ function gerarRecomendacaoDeEstudo(analises) {
   return `Priorize o estudo de ${habilidadePrioritaria}, pois essa habilidade aparece como requisito faltante em ${contagemHabilidades[habilidadePrioritaria]} vaga(s).`;
 }
 
+function processarAnalises(analises, callback) {
+  if (typeof callback !== "function") {
+    throw new TypeError("O callback informado não é uma função.");
+  }
+
+  for (let i = 0; i < analises.length; i++) {
+    callback(analises[i]);
+  }
+}
+
+function exibirAnalise(analise) {
+  const habilidadesFaltantes =
+    analise.habilidadesFaltantes.length > 0
+      ? analise.habilidadesFaltantes.join(", ")
+      : "Nenhuma";
+
+  console.log(`Empresa: ${analise.vaga.empresa}`);
+  console.log(`Cargo: ${analise.vaga.cargo}`);
+  console.log(`Requisitos: ${analise.vaga.requisitos.join(", ")}`);
+  console.log(`Percentual: ${analise.percentual}%`);
+  console.log(`Classificação: ${analise.classificacao}`);
+  console.log(
+    `Habilidades compatíveis: ${analise.habilidadesCompativeis.join(", ")}`,
+  );
+  console.log(`Habilidades faltantes: ${habilidadesFaltantes}`);
+}
+
 function carregarVagas() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -196,6 +223,8 @@ async function executarSkillMatch() {
 const analises = analisarVagas(candidato, vagas);
 
 console.log(analises);
+
+processarAnalises(analises, exibirAnalise);
 
 const melhorVaga = encontrarMelhorVaga(analises);
 
