@@ -181,6 +181,18 @@ function carregarVagas() {
   });
 }
 
+async function executarSkillMatch() {
+  console.log("Carregando vagas...");
+
+  try {
+    const vagasCarregadas = await carregarVagas();
+
+    console.log(`Vagas carregadas: ${vagasCarregadas.length}`);
+  } catch (erro) {
+    console.error(`Erro ao carregar vagas: ${erro.message}`);
+  }
+}
+
 const analises = analisarVagas(candidato, vagas);
 
 console.log(analises);
@@ -196,10 +208,4 @@ const recomendacao = gerarRecomendacaoDeEstudo(analises);
 
 console.log(recomendacao);
 
-carregarVagas()
-  .then((vagasCarregadas) => {
-    console.log(vagasCarregadas.length);
-  })
-  .catch((erro) => {
-    console.log(erro.message);
-  });
+executarSkillMatch();
