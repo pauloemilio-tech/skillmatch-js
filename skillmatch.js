@@ -185,6 +185,7 @@ function exibirAnalise(analise) {
       : "Nenhuma";
 
   console.log(`Análise número: ${contarAnalise()}`);
+  console.log(`Resumo: ${analise.vaga.exibirResumo()}`);
   console.log(`Empresa: ${analise.vaga.empresa}`);
   console.log(`Cargo: ${analise.vaga.cargo}`);
   console.log(`Requisitos: ${analise.vaga.requisitos.join(", ")}`);
