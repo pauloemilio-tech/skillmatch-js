@@ -72,5 +72,35 @@ function encontrarHabilidadesFaltantes(candidato, vaga) {
   );
 }
 
-console.log(encontrarHabilidadesCompativeis(candidato, vagas[0]));
-console.log(encontrarHabilidadesFaltantes(candidato, vagas[0]));
+function calcularCompatibilidade(candidato, vaga) {
+  if (vaga.requisitos.length === 0) {
+    return 0;
+  }
+
+  const habilidadesCompativeis = encontrarHabilidadesCompativeis(
+    candidato,
+    vaga,
+  );
+
+  return Math.round(
+    (habilidadesCompativeis.length / vaga.requisitos.length) * 100,
+  );
+}
+
+function classificarCompatibilidade(percentual) {
+  if (percentual >= 80) {
+    return "Alta compatibilidade";
+  } else if (percentual >= 50) {
+    return "Média compatibilidade";
+  } else {
+    return "Baixa compatibilidade";
+  }
+}
+
+for (let i = 0; i < vagas.length; i++) {
+  const percentual = calcularCompatibilidade(candidato, vagas[i]);
+
+  console.log(vagas[i].cargo);
+  console.log(percentual);
+  console.log(classificarCompatibilidade(percentual));
+}
