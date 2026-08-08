@@ -97,10 +97,26 @@ function classificarCompatibilidade(percentual) {
   }
 }
 
-for (let i = 0; i < vagas.length; i++) {
-  const percentual = calcularCompatibilidade(candidato, vagas[i]);
+function analisarVagas(candidato, vagas) {
+  return vagas.map((vaga) => {
+    const habilidadesCompativeis = encontrarHabilidadesCompativeis(
+      candidato,
+      vaga,
+    );
+    const habilidadesFaltantes = encontrarHabilidadesFaltantes(candidato, vaga);
+    const percentual = calcularCompatibilidade(candidato, vaga);
+    const classificacao = classificarCompatibilidade(percentual);
 
-  console.log(vagas[i].cargo);
-  console.log(percentual);
-  console.log(classificarCompatibilidade(percentual));
+    return {
+      vaga,
+      habilidadesCompativeis,
+      habilidadesFaltantes,
+      percentual,
+      classificacao,
+    };
+  });
 }
+
+const analises = analisarVagas(candidato, vagas);
+
+console.log(analises);
