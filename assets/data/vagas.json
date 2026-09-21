@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": 1,
+    "empresa": "Aurora Digital",
+    "cargo": "Desenvolvedor Front-End Júnior",
+    "requisitos": ["HTML", "CSS", "JavaScript", "Git"],
+    "salario": 4200,
+    "modalidade": "Remota",
+    "stack": ["HTML", "CSS", "JavaScript"]
+  },
+  {
+    "id": 2,
+    "empresa": "Nexo Tecnologia",
+    "cargo": "Desenvolvedor React Pleno",
+    "requisitos": ["JavaScript", "React", "Git", "APIs REST"],
+    "salario": 7200,
+    "modalidade": "Híbrida",
+    "stack": ["React", "JavaScript", "APIs REST"]
+  },
+  {
+    "id": 3,
+    "empresa": "Horizonte Web",
+    "cargo": "Especialista em Interfaces Acessíveis",
+    "requisitos": ["HTML", "CSS", "JavaScript", "Acessibilidade", "Git"],
+    "salario": 6800,
+    "modalidade": "Remota",
+    "stack": ["HTML", "CSS", "JavaScript", "Acessibilidade"]
+  },
+  {
+    "id": 4,
+    "empresa": "Pixel Norte",
+    "cargo": "Desenvolvedor Front-End Pleno",
+    "requisitos": ["JavaScript", "React", "CSS", "APIs REST", "Testes automatizados"],
+    "salario": 7500,
+    "modalidade": "Presencial",
+    "stack": ["React", "CSS", "JavaScript"]
+  }
+]
