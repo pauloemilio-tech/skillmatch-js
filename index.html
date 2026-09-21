@@ -24,6 +24,69 @@
           A aplicação analisará a compatibilidade entre o perfil do candidato e
           vagas de Front-End.
         </p>
+
+        <form id="perfil-form" class="profile-form" novalidate>
+          <fieldset>
+            <legend>Perfil do candidato</legend>
+
+            <div class="form-field">
+              <label for="nome">Nome</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                aria-describedby="erro-nome"
+                required
+              >
+              <span id="erro-nome" class="field-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="areaInteresse">Área de interesse</label>
+              <input
+                type="text"
+                id="areaInteresse"
+                name="areaInteresse"
+                placeholder="Front-End"
+                aria-describedby="erro-areaInteresse"
+                required
+              >
+              <span id="erro-areaInteresse" class="field-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="habilidades">Habilidades</label>
+              <textarea
+                id="habilidades"
+                name="habilidades"
+                aria-describedby="habilidades-ajuda erro-habilidades"
+                required
+              ></textarea>
+              <span id="habilidades-ajuda" class="field-help">
+                Separe as habilidades por vírgulas, por exemplo: HTML, CSS,
+                JavaScript.
+              </span>
+              <span id="erro-habilidades" class="field-error"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="tempoExperiencia">Tempo de experiência (anos)</label>
+              <input
+                type="number"
+                id="tempoExperiencia"
+                name="tempoExperiencia"
+                min="0"
+                step="0.5"
+                aria-describedby="erro-tempoExperiencia"
+                required
+              >
+              <span id="erro-tempoExperiencia" class="field-error"></span>
+            </div>
+          </fieldset>
+
+          <button type="submit">Analisar perfil</button>
+          <p id="mensagem-formulario" class="form-message" aria-live="polite"></p>
+        </form>
       </section>
     </main>
 
