@@ -1,6 +1,7 @@
 import { VagaFrontEnd } from "./motor.js";
 
 const CAMINHO_VAGAS = "assets/data/vagas.json";
+const CHAVE_PERFIL = "skillmatch-perfil";
 
 async function carregarVagas() {
   const response = await fetch(CAMINHO_VAGAS);
@@ -59,4 +60,24 @@ async function obterVagas() {
   }
 }
 
-export { carregarVagas, criarInstanciasDeVagas, obterVagas };
+function salvarPerfil(perfil) {
+  localStorage.setItem(CHAVE_PERFIL, JSON.stringify(perfil));
+}
+
+function recuperarPerfil() {
+  try {
+    const perfil = localStorage.getItem(CHAVE_PERFIL);
+
+    return perfil === null ? null : JSON.parse(perfil);
+  } catch {
+    return null;
+  }
+}
+
+export {
+  carregarVagas,
+  criarInstanciasDeVagas,
+  obterVagas,
+  recuperarPerfil,
+  salvarPerfil,
+};

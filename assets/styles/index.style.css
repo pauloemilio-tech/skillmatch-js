@@ -55,6 +55,95 @@ p {
   padding-block: 3rem;
 }
 
+.profile-form {
+  display: flex;
+  max-width: 40rem;
+  margin-top: 2rem;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.profile-form fieldset {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-form legend {
+  margin-bottom: 1rem;
+  padding: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea,
+.profile-form button {
+  font: inherit;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.25rem;
+  color: inherit;
+  background-color: #ffffff;
+}
+
+.form-field textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible,
+.profile-form button:focus-visible {
+  outline: 0.1875rem solid #2563eb;
+  outline-offset: 0.125rem;
+}
+
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: #b91c1c;
+}
+
+.field-help {
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.field-error,
+.form-message {
+  min-height: 1.25rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+.profile-form button {
+  align-self: flex-start;
+  padding: 0.75rem 1.25rem;
+  border: 0;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: #1d4ed8;
+  cursor: pointer;
+}
+
 @media (min-width: 48rem) {
   h1 {
     font-size: 2rem;
