@@ -1,10 +1,18 @@
-import { criarCandidato } from "./motor.js";
+import {
+  analisarVagas,
+  criarCandidato,
+  encontrarMelhorVaga,
+  gerarRecomendacaoDeEstudo,
+} from "./motor.js";
 import { obterVagas, recuperarPerfil, salvarPerfil } from "./dados.js";
 import {
   exibirErrosDoFormulario,
+  limparResultados,
   limparErrosDoFormulario,
   obterDadosDoFormulario,
   preencherFormularioComPerfil,
+  renderizarEstadoDasVagas,
+  renderizarResultados,
   validarDadosDoPerfil,
 } from "./ui.js";
 
@@ -15,6 +23,7 @@ let estadoAplicacao = {
   vagas: [],
   erro: null,
   candidato: null,
+  analises: [],
 };
 
 async function inicializar() {
@@ -33,7 +42,10 @@ async function inicializar() {
     status: "carregando",
     vagas: [],
     erro: null,
+    analises: [],
   };
+
+  renderizarEstadoDasVagas("carregando");
 
   const resultadoVagas = await obterVagas();
 
@@ -41,6 +53,11 @@ async function inicializar() {
     ...estadoAplicacao,
     ...resultadoVagas,
   };
+
+  renderizarEstadoDasVagas(
+    estadoAplicacao.status,
+    estadoAplicacao.erro,
+  );
 }
 
 function tratarEnvioDoPerfil(event) {
@@ -68,6 +85,27 @@ function tratarEnvioDoPerfil(event) {
     ...estadoAplicacao,
     candidato,
   };
+
+  limparResultados();
+
+  if (estadoAplicacao.status !== "sucesso") {
+    renderizarEstadoDasVagas(
+      estadoAplicacao.status,
+      estadoAplicacao.erro,
+    );
+    return;
+  }
+
+  const analises = analisarVagas(candidato, estadoAplicacao.vagas);
+  const melhorVaga = encontrarMelhorVaga(analises);
+  const recomendacao = gerarRecomendacaoDeEstudo(analises);
+
+  estadoAplicacao = {
+    ...estadoAplicacao,
+    analises,
+  };
+
+  renderizarResultados(analises, melhorVaga, recomendacao, candidato);
 }
 
 formulario.addEventListener("submit", tratarEnvioDoPerfil);
