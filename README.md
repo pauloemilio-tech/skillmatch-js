@@ -1,175 +1,148 @@
-# SkillMatch JS
+# SkillMatch Web
 
-## Sobre o projeto
+## Descrição
 
-O SkillMatch JS é um simulador de compatibilidade entre o perfil de uma pessoa candidata e três vagas fictícias de Front-End Júnior. O programa analisa os dados em JavaScript e apresenta um relatório no console.
-
-## Objetivo
-
-O projeto ajuda a identificar quais oportunidades combinam melhor com o perfil informado. Para isso, compara as habilidades da pessoa candidata com os requisitos de cada vaga, calcula o percentual de compatibilidade, aponta conhecimentos já dominados e faltantes, classifica os resultados e recomenda uma prioridade de estudo.
+O SkillMatch Web é uma aplicação que analisa a compatibilidade entre o perfil de uma pessoa candidata e vagas fictícias de Front-End. A partir das habilidades informadas, o sistema calcula o percentual de compatibilidade, identifica habilidades encontradas e faltantes, destaca a melhor vaga e gera uma recomendação de estudo.
 
 ## Funcionalidades
 
-- Cadastro de um perfil de candidato com nome, área de interesse, habilidades, tempo de experiência e disponibilidade para trabalho remoto;
-- três vagas fictícias de Front-End Júnior;
-- comparação entre as habilidades do candidato e os requisitos das vagas;
-- identificação das habilidades compatíveis e faltantes;
-- cálculo do percentual de compatibilidade;
+- Cadastro de perfil com nome, área de interesse, habilidades e tempo de experiência;
+- validação do formulário com mensagens de erro por campo;
+- persistência e recuperação do perfil com `localStorage`;
+- carregamento das vagas por meio da Fetch API;
+- análise do perfil em relação a todas as vagas;
 - classificação da compatibilidade como Alta, Média ou Baixa;
-- identificação da melhor vaga;
-- recomendação de uma habilidade para estudo;
-- carregamento simulado das vagas;
-- tratamento de erros no carregamento e validação do callback;
-- relatório completo no console.
+- identificação de habilidades compatíveis e faltantes;
+- destaque da vaga com maior compatibilidade;
+- recomendação de uma habilidade prioritária para estudo;
+- criação dinâmica dos cards de resultados;
+- tratamento dos estados de carregamento, sucesso, vazio e erro;
+- layout responsivo para dispositivos móveis e telas maiores;
+- recursos básicos de acessibilidade;
+- metadados básicos de SEO.
+
+## Tecnologias
+
+- HTML5
+- CSS3
+- JavaScript
+- ES Modules
+- Fetch API
+- localStorage
+- JSON
+- Git
+- GitHub
+
+O projeto não utiliza frameworks ou bibliotecas externas.
 
 ## Estrutura do projeto
 
 ```text
 skillmatch-js/
+├── index.html
 ├── skillmatch.js
+├── assets/
+│   ├── data/
+│   │   └── vagas.json
+│   ├── scripts/
+│   │   ├── main.js
+│   │   ├── motor.js
+│   │   ├── ui.js
+│   │   └── dados.js
+│   ├── styles/
+│   │   └── index.style.css
+│   └── img/
 └── README.md
 ```
 
+`skillmatch.js` corresponde à versão anterior executada no console. O arquivo foi preservado como histórico da evolução para o SkillMatch Web e não é carregado pela aplicação web atual.
+
+Responsabilidades dos módulos:
+
+- `motor.js`: contém as classes e a lógica de domínio, incluindo análise, classificação, melhor vaga e recomendação;
+- `ui.js`: lê e valida o formulário, apresenta mensagens e cria os elementos da interface no DOM;
+- `dados.js`: carrega as vagas e gerencia a persistência do perfil;
+- `main.js`: mantém o estado da aplicação e coordena dados, domínio e interface.
+
 ## Como executar
 
-1. Tenha o [Git](https://git-scm.com/) instalado.
-2. Tenha o [Node.js](https://nodejs.org/) instalado.
-3. Clone o repositório:
+Como o projeto utiliza ES Modules e Fetch API, ele deve ser executado por meio de um servidor local.
 
-   ```bash
-   git clone https://github.com/pauloemilio-tech/skillmatch-js.git
-   ```
+Uma opção simples é utilizar o Visual Studio Code com a extensão Live Server:
 
-4. Entre na pasta do projeto:
+1. Abra a pasta do projeto no Visual Studio Code.
+2. Instale a extensão Live Server, caso ainda não esteja disponível.
+3. Clique com o botão direito em `index.html`.
+4. Selecione **Open with Live Server**.
 
-   ```bash
-   cd skillmatch-js
-   ```
+A aplicação será aberta no navegador usando um endereço de servidor local.
 
-5. Execute o programa:
+## Como utilizar
 
-   ```bash
-   node skillmatch.js
-   ```
-
-O projeto não possui dependências externas e, por isso, não exige instalação de pacotes.
-
-## Regra de compatibilidade
-
-Para cada vaga, o percentual é calculado pela fórmula:
-
-```text
-quantidade de habilidades compatíveis / quantidade total de requisitos * 100
-```
-
-O resultado é arredondado para o número inteiro mais próximo com `Math.round()`. Caso uma vaga não possua requisitos, o percentual retornado é `0`.
-
-## Classificação
-
-- De 80% a 100%: Alta compatibilidade;
-- de 50% a 79%: Média compatibilidade;
-- de 0% a 49%: Baixa compatibilidade.
-
-## Critério da recomendação de estudo
-
-A função `gerarRecomendacaoDeEstudo()` percorre todas as análises e reúne, em um único array, as habilidades faltantes de cada vaga. Em seguida, utiliza `reduce()` para criar um objeto no qual cada habilidade é associada à sua quantidade de ocorrências.
-
-A habilidade que aparece mais vezes entre os requisitos faltantes é priorizada. A comparação somente troca a prioridade quando encontra uma contagem estritamente maior; portanto, em caso de empate, permanece a primeira habilidade encontrada na ordem das análises. Se nenhuma habilidade estiver faltando, o programa informa que o perfil atende a todos os requisitos das vagas analisadas.
+1. Preencha o nome da pessoa candidata.
+2. Informe a área de interesse.
+3. Digite as habilidades separadas por vírgulas, por exemplo: `HTML, CSS, JavaScript, Git`.
+4. Informe o tempo de experiência em anos.
+5. Clique em **Analisar perfil**.
+6. Consulte os cards para verificar percentuais, classificações e habilidades encontradas ou faltantes.
+7. Confira no resumo a melhor vaga e a recomendação de estudo.
 
 ## Conceitos de JavaScript aplicados
 
-- **Strings:** representam nomes, cargos, empresas, habilidades e mensagens; template literals montam os textos do relatório.
-- **Números:** armazenam o tempo de experiência, percentuais, índices, contagens e o atraso do carregamento simulado.
-- **Booleanos:** são utilizados no perfil do candidato, como em `disponivelParaRemoto`, para representar informações de verdadeiro ou falso.
-- **Arrays:** guardam as habilidades, as vagas, os requisitos e os resultados das análises.
-- **Objetos:** representam o candidato, cada resultado de análise e a contagem das habilidades faltantes.
-- **`const` e `let`:** `const` mantém referências que não são reatribuídas; `let` controla índices dos laços e valores mutáveis, como o contador e a habilidade prioritária.
-- **Operadores matemáticos e lógicos:** divisão e multiplicação calculam o percentual; incremento atualiza contagens; comparações, negação e testes condicionais verificam requisitos e resultados.
-- **`if-else`:** trata vagas sem requisitos, define a classificação, atualiza contagens e escolhe a recomendação.
-- **Laço `for`:** percorre análises e habilidades faltantes, executa o callback e procura a habilidade prioritária.
-- **Funções tradicionais:** organizam cálculos, análises, exibição, carregamento e execução do programa.
-- **Arrow functions:** são usadas em `filter()`, `map()`, `reduce()`, na criação da `Promise` e no `setTimeout()`.
-- **`filter()`:** separa requisitos compatíveis e faltantes.
-- **`map()`:** transforma cada vaga em um objeto de análise.
-- **`reduce()`:** escolhe a melhor análise e conta as ocorrências das habilidades faltantes.
-- **Classes:** modelam vagas comuns e remotas.
-- **`constructor`:** inicializa as propriedades de cada vaga criada.
-- **Herança:** permite que `VagaRemota` reutilize e especialize `Vaga`.
-- **`this`:** acessa as propriedades da instância atual dentro das classes.
-- **`super`:** chama o construtor e o resumo da classe base em `VagaRemota`.
-- **Callback:** `processarAnalises()` recebe e chama uma função para cada análise.
-- **Closure:** o contador preserva a quantidade de análises entre chamadas.
-- **`Promise`:** representa o carregamento futuro das vagas e pode ser resolvida ou rejeitada.
-- **`async/await`:** permite aguardar o carregamento antes de realizar as análises.
-- **`try-catch`:** captura e exibe erros ocorridos durante o carregamento e o fluxo de execução.
+- Classes e construtores;
+- herança com `extends` e `super`;
+- uso de `this`;
+- sobrescrita de método;
+- métodos de array `map()`, `filter()` e `reduce()`;
+- callback;
+- closure;
+- assincronismo com `async/await`;
+- requisições com `fetch()`;
+- módulos com `import` e `export`;
+- manipulação dinâmica do DOM;
+- eventos de formulário;
+- persistência com `localStorage`.
 
-## Programação Orientada a Objetos
+## Arquitetura
 
-A classe `Vaga` reúne as propriedades `empresa`, `cargo` e `requisitos`, inicializadas pelo `constructor`, e fornece o método `exibirResumo()`. A classe `VagaRemota` herda de `Vaga`, chama `super()` para inicializar os dados comuns e adiciona o benefício específico do trabalho remoto.
+A aplicação está organizada em quatro responsabilidades principais:
 
-`VagaRemota` sobrescreve `exibirResumo()`: aproveita o texto da classe base com `super.exibirResumo()` e acrescenta as informações de modalidade e benefício. O uso de `this` permite acessar os dados da própria instância. Essa especialização é coerente porque uma vaga remota continua sendo uma vaga, mas possui uma característica adicional.
+- **Domínio:** regras de compatibilidade, classes e análise das vagas em `motor.js`;
+- **dados:** carregamento do arquivo JSON e persistência do perfil em `dados.js`;
+- **interface:** formulário, validação, mensagens e renderização dos resultados em `ui.js`;
+- **orquestração:** inicialização, estado e integração entre os módulos em `main.js`.
 
-## Callback
+Essa separação evita que regras de negócio sejam misturadas com acesso a dados ou manipulação do DOM.
 
-A função `processarAnalises()` recebe as análises e uma função como parâmetros. Depois de verificar se o callback é realmente uma função, percorre o array e executa a função recebida para cada análise. No fluxo atual, `exibirAnalise` é passada como esse callback e apresenta cada resultado no console.
+## Acessibilidade e responsividade
 
-## Closure
+O formulário utiliza labels associadas aos campos, mensagens de erro específicas, `aria-invalid` e `aria-describedby`. As mensagens e os resultados dinâmicos possuem regiões apropriadas para tecnologias assistivas, e o foco é direcionado ao primeiro campo inválido após uma tentativa de envio.
 
-`criarContadorDeAnalises()` declara internamente a variável `quantidade` e retorna outra função. A função retornada mantém acesso a essa variável, incrementando-a a cada análise sem depender de uma variável global. Esse comportamento é uma closure.
+O layout foi desenvolvido com abordagem mobile-first e Flexbox. Os cards são exibidos em uma coluna em telas pequenas e em duas colunas em telas maiores, sem depender de rolagem horizontal.
 
-## Promise e async/await
+## Persistência
 
-`carregarVagas()` simula a consulta de informações a um servidor. Ela cria uma `Promise` e usa `setTimeout()` para aguardar um segundo: se existirem vagas, chama `resolve()` com o array; caso contrário, chama `reject()` com um erro.
+O perfil válido é salvo no navegador com `localStorage`. O objeto é convertido para texto com `JSON.stringify()` e recuperado com `JSON.parse()`. Quando um perfil salvo está disponível, seus dados são preenchidos novamente no formulário.
 
-A função assíncrona `executarSkillMatch()` usa `await` para esperar essa operação antes de analisar os dados. O bloco `try-catch` trata uma eventual falha e apresenta a mensagem de erro no console.
+## Dados das vagas
 
-## Arquitetura cliente-servidor
+As vagas são armazenadas em `assets/data/vagas.json` e carregadas pela Fetch API. Após o carregamento, cada registro é convertido em uma instância de `VagaFrontEnd` antes de ser enviado ao motor de compatibilidade.
 
-Em uma arquitetura cliente-servidor, o cliente solicita uma informação, o servidor recebe e processa a solicitação e, depois, devolve uma resposta. Este projeto não possui um servidor real: `carregarVagas()` apenas simula a espera e uma resposta que poderia ocorrer nesse tipo de comunicação.
+A aplicação trata os estados de carregamento, sucesso, catálogo vazio e erro de leitura.
 
-## Como a internet funciona
+## Git e organização
 
-De forma introdutória, um **cliente** — como um navegador ou aplicativo — envia uma **requisição** pela internet. Um **servidor** recebe essa solicitação, realiza o processamento necessário e envia uma **resposta** com dados ou uma indicação de erro. A internet permite essa comunicação entre dispositivos por meio de redes e protocolos padronizados.
+O desenvolvimento utilizou a branch `develop`, feature branches, pull requests e commits descritivos para organizar e revisar as diferentes etapas da implementação.
 
-## Organização do projeto
+## Uso de Inteligência Artificial
 
-O desenvolvimento foi organizado em um quadro Kanban com as colunas **Backlog**, **A Fazer**, **Em Andamento** e **Concluído**, facilitando o acompanhamento das atividades.
+ChatGPT e Codex foram utilizados como ferramentas de apoio durante o planejamento, a revisão do código, a geração inicial de alguns trechos, a execução de testes e a elaboração da documentação.
 
-[Quadro Kanban](https://trello.com/b/cVuIqiuE/skillmatch-js-mini-projeto-sctec)
-
-## Versionamento
-
-O desenvolvimento utilizou Git e GitHub, com branches separadas e commits incrementais. As branches utilizadas foram:
-
-- `feature/modelagem`: perfil, classes, herança e vagas;
-- `feature/compatibilidade`: regras de análise, compatibilidade, métodos de array, recomendação, Promise, async/await, callback, closure, testes e fluxo final;
-- `docs/readme`: documentação final.
-
-## Extensões do VS Code
-
-As extensões abaixo são recomendações opcionais para facilitar o desenvolvimento:
-
-- **Prettier - Code formatter:** formatação e padronização;
-- **JavaScript (ES6) code snippets:** atalhos para JavaScript;
-- **GitLens:** apoio na visualização do histórico Git.
-
-Nenhuma extensão é necessária para executar o projeto.
-
-## Uso de inteligência artificial
-
-Ferramentas de inteligência artificial foram utilizadas como apoio para organizar etapas, gerar sugestões de implementação, revisar o código, validar requisitos e apoiar a documentação. A inteligência artificial não desenvolveu o projeto sozinha: cada alteração foi executada, o funcionamento foi testado, o código foi revisado e os commits foram realizados de forma incremental.
-
-Todo o conteúdo entregue foi revisado e testado, e compreendo as implementações e decisões utilizadas no projeto.
-
-## Melhorias futuras
-
-- Criar uma interface gráfica;
-- integrar o sistema a uma API real de vagas;
-- adicionar persistência de candidatos e análises.
+O código produzido foi revisado, os testes foram executados e as decisões técnicas e validações foram realizadas pelo desenvolvedor. Ajustes manuais foram aplicados sempre que necessário para manter a implementação alinhada aos requisitos do projeto.
 
 ## Vídeo de apresentação
 
-[Vídeo de apresentação](https://drive.google.com/file/d/1SmRZB0c_eMjM_OOqyp14-hOXIBuxB3D2/view?usp=sharing)
+[Adicionar link do vídeo aqui]
 
 ## Autor
 
