@@ -90,6 +90,9 @@ function exibirErrosDoFormulario(erros) {
   if (mensagemGeral && Object.keys(erros).length > 0) {
     mensagemGeral.textContent = "Revise os campos indicados.";
   }
+
+  const primeiroCampoComErro = CAMPOS_PERFIL.find((campo) => erros[campo]);
+  document.getElementById(primeiroCampoComErro)?.focus();
 }
 
 function preencherFormularioComPerfil(perfil) {
