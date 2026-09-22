@@ -7,7 +7,7 @@
       name="description"
       content="Aplicação para analisar a compatibilidade entre candidatos e vagas de Front-End."
     >
-    <title>SkillMatch Web</title>
+    <title>SkillMatch Web | Compatibilidade com vagas Front-End</title>
     <link rel="stylesheet" href="assets/styles/index.style.css">
   </head>
   <body>
@@ -29,7 +29,6 @@
           id="estado-vagas"
           class="jobs-status"
           role="status"
-          aria-live="polite"
         ></p>
 
         <form id="perfil-form" class="profile-form" novalidate>
@@ -102,7 +101,11 @@
           hidden
         >
           <h2 id="resultados-titulo">Resultados</h2>
-          <div id="resumo-resultados" class="results-summary"></div>
+          <div
+            id="resumo-resultados"
+            class="results-summary"
+            aria-live="polite"
+          ></div>
           <div id="lista-vagas" class="jobs-list"></div>
         </section>
       </section>

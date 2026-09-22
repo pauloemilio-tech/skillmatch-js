@@ -50,12 +50,7 @@ class Vaga {
       this.encontrarHabilidadesCompativeis(habilidadesCandidato);
     const habilidadesFaltantes =
       this.encontrarHabilidadesFaltantes(habilidadesCandidato);
-    const percentual =
-      this.requisitos.length === 0
-        ? 0
-        : Math.round(
-            (habilidadesCompativeis.length / this.requisitos.length) * 100,
-          );
+    const percentual = this.calcularCompatibilidade(habilidadesCandidato);
     const classificacao = this.classificarCompatibilidade(percentual);
 
     return {
