@@ -25,6 +25,13 @@
           vagas de Front-End.
         </p>
 
+        <p
+          id="estado-vagas"
+          class="jobs-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+
         <form id="perfil-form" class="profile-form" novalidate>
           <fieldset>
             <legend>Perfil do candidato</legend>
@@ -87,6 +94,17 @@
           <button type="submit">Analisar perfil</button>
           <p id="mensagem-formulario" class="form-message" aria-live="polite"></p>
         </form>
+
+        <section
+          id="resultados"
+          class="results-section"
+          aria-labelledby="resultados-titulo"
+          hidden
+        >
+          <h2 id="resultados-titulo">Resultados</h2>
+          <div id="resumo-resultados" class="results-summary"></div>
+          <div id="lista-vagas" class="jobs-list"></div>
+        </section>
       </section>
     </main>
 
