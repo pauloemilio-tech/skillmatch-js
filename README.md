@@ -142,7 +142,7 @@ O código produzido foi revisado, os testes foram executados e as decisões téc
 
 ## Vídeo de apresentação
 
-[https://youtu.be/YO26KcZ2diE?si=O1F4W798xxtrYmCN)]
+[Vídeo de apresentação](https://youtu.be/YO26KcZ2diE?si=O1F4W798xxtrYmCN)
 
 ## Autor
 
