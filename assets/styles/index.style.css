@@ -1,0 +1,283 @@
+:root {
+  color: #1f2937;
+  background-color: #f8fafc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.container {
+  width: calc(100% - 2rem);
+  max-width: 64rem;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.site-header,
+.site-footer {
+  padding-block: 1.25rem;
+  background-color: #e2e8f0;
+}
+
+.site-main {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  padding-block: 2rem;
+}
+
+.profile-form {
+  display: flex;
+  width: 100%;
+  max-width: 40rem;
+  min-width: 0;
+  margin-top: 2rem;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.profile-form fieldset {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-form legend {
+  margin-bottom: 1rem;
+  padding: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.form-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea,
+.profile-form button {
+  font: inherit;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid #94a3b8;
+  border-radius: 0.25rem;
+  color: inherit;
+  background-color: #ffffff;
+}
+
+.form-field textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible,
+.profile-form button:focus-visible {
+  outline: 0.1875rem solid #2563eb;
+  outline-offset: 0.125rem;
+}
+
+.form-field input[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: #b91c1c;
+}
+
+.field-help {
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.field-error,
+.form-message {
+  min-height: 1.25rem;
+  color: #b91c1c;
+  font-size: 0.875rem;
+}
+
+.profile-form button {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 0.75rem 1.25rem;
+  border: 0;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  background-color: #1d4ed8;
+  cursor: pointer;
+}
+
+.jobs-status {
+  margin-top: 1rem;
+  color: #475569;
+}
+
+.jobs-status--error {
+  color: #b91c1c;
+}
+
+.results-section {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 3rem;
+}
+
+.results-summary {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-left: 0.25rem solid #2563eb;
+  border-radius: 0.25rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #eff6ff;
+  overflow-wrap: anywhere;
+}
+
+.results-summary h3,
+.job-card h3 {
+  margin: 0;
+}
+
+.jobs-list {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.job-card {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #cbd5e1;
+  border-left-width: 0.35rem;
+  border-radius: 0.375rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.job-card--alta {
+  border-left-color: #15803d;
+}
+
+.job-card--media {
+  border-left-color: #b45309;
+}
+
+.job-card--baixa {
+  border-left-color: #b91c1c;
+}
+
+.job-card--best {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 0.125rem #bfdbfe;
+}
+
+.job-card__best-label {
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  color: #ffffff;
+  background-color: #1d4ed8;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.job-card__company {
+  color: #475569;
+  font-weight: 600;
+}
+
+.job-card__percentage {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 48rem) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .site-main {
+    padding-block: 4rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  .results-summary,
+  .job-card {
+    padding: 1.25rem;
+  }
+
+  .jobs-list {
+    flex-flow: row wrap;
+  }
+
+  .job-card {
+    width: auto;
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
